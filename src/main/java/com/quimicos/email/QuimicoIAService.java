@@ -59,14 +59,13 @@ public class QuimicoIAService {
                     )
             );
 
-            log.info("Respuesta para quimico " + nombreQuimico + ": " + response.toString());
-
+            log.info("Respuesta para quimico {}: {}", nombreQuimico, response.toString());
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
 
         // Enviar la respuesta al cliente por email
-        emailService.enviarEmail(response);
+        emailService.enviarEmail(response.getResult().getOutput().getText());
 
         return ResponseEntity.status(200).body(response);
     }
@@ -87,7 +86,7 @@ public class QuimicoIAService {
             }
 
         } catch (IOException e) {
-            e.printStackTrace();
+            log.error("Error while reading the JSON file", e);
             return null;
         }
         return quimicoData.toString();
