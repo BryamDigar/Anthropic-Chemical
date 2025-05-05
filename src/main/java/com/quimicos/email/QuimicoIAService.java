@@ -54,8 +54,8 @@ public class QuimicoIAService {
                     new Prompt(
                             "Eres un experto en química. Acabo de tener un posible riesgo con este tipo de quimico: " + nombreQuimico +
                                     ". segun la base de datos que tengo tiene esta compativilidad con estos quimicos: " + contexto +
-                                    ". Redacta una breve respuesta sobre los posibles riesgos en formato de email." +
-                                    colorMeaning
+                                    ". Redacta una breve respuesta sobre los posibles riesgos en formato de cuerpo de email." +
+                                    colorMeaning + ". Hazlo para enviar directamente"
                     )
             );
 
