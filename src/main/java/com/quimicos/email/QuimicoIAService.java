@@ -9,8 +9,8 @@ import org.springframework.ai.chat.model.ChatResponse;
 import org.springframework.ai.chat.prompt.Prompt;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.core.io.ClassPathResource;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -73,10 +73,10 @@ public class QuimicoIAService {
     private String obtenerDataQuimico(String nombreQuimico) {
         JsonNode quimicoData;
         try {
-            // Load and parse the JSON file
+            // Load and parse the JSON file using ClassPathResource
             ObjectMapper objectMapper = new ObjectMapper();
-            File file = new File("src/main/resources/QuimicosName.json");
-            JsonNode rootNode = objectMapper.readTree(file);
+            ClassPathResource resource = new ClassPathResource("QuimicosName.json");
+            JsonNode rootNode = objectMapper.readTree(resource.getInputStream());
 
             // Search for the chemical name in the JSON structure
             quimicoData = rootNode.get(nombreQuimico);
